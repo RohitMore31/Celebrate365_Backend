@@ -4,6 +4,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto-js');
 const send_the_email = require('../mailer');
+const { ipadd } = require("../ipadd");
 
 
 const signature = "@svt#4mx&5ccd81961#chu";
@@ -31,7 +32,7 @@ router.post("/forgotpassword", (req, resp) => {
             // providing link to mail which will be containt only 10 min
             // const token = jwt.sign(email,signature,{expiresIn:"10m"});
             const token = jwt.sign(email,signature);
-            const link =`http://13.235.49.69:4000/viewnewpasspage/${token}`
+            const link =`http://${ipadd.ipa}:4000/viewnewpasspage/${token}`
             const rt = send_the_email(email,link,fname=null,lname=null,from=null);
             resp.send(result);
         }
