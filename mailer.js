@@ -6,8 +6,6 @@ const ejs = require('ejs');
 
 async function sendmail(to_mail,msg,fname,lname,ffrom) {
   let contents = null;
-    console.log("faname =",fname);
-    console.log("ffrom = ",ffrom);
     contents = await ejs.renderFile("./views/bdaywish.ejs",{name:fname,wishfrom:ffrom,message:msg});
     
   const transporter = nodemailer.createTransport({
